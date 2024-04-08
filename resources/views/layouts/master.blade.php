@@ -55,13 +55,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="{{route('admin.showUser')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i><b> {{auth::user()->firstname}}</b></a>
-    @role('admin')
-    <a href="{{route('admin.showUser')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Users</a>
-    <a href="{{route('admin.addProduct')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-product-hunt"></i>  add product</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class=" fa fa-eye fa-fw"></i>  Products</a>
-    @endrole
+    @can('manage users')
+       <a href="{{route('admin.showUser')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Users</a>
+    @endcan
+    @can('update his password')
     <a href="{{route('changePassword')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  update password</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  {{auth::user()->name}} product</a>
+    @endcan
+  
 
   </div>
 </nav>

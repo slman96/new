@@ -1,14 +1,14 @@
 <?php
 
-function upladeFile($image )
+function upladeFile($image,$path )
 {
-  $imagepath =$image->store('uploads','public');
+  $imagepath =$image->store($path,'public');
   return $imagepath;
 }
-function upladeMaltiFile($images)
+function upladeMaltiFile($images,$path)
 {
     foreach($images as $image){
-        $imagepath =$image->store('uploads','public');
+        $imagepath =$image->store($path,'public');
     }
     return $imagepath;
 }

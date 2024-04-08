@@ -1,5 +1,28 @@
-@extends('layouts.app')
-@section('content')
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<script src="{{ asset('js/jquery.js') }}"></script>
 <div class="body">
     <div class="container">
         <div class="text">
@@ -36,11 +59,6 @@
                  </a>
                 @endif
              </div>
-             <div class="input-data">
-                <a href="{{ route('register') }}">
-                    don't have account ? Register now
-                 </a>
-             </div>
          </div>
          <div class="form-row submit-btn">
             <div class="input-data"> 
@@ -54,32 +72,34 @@
         </div>
 </div>
 <script>
-        $(document).on('click', '#save', function (e) {
-            e.preventDefault();
-            $('#firstname_error').text('');
-            $('#lastname_error').text('');
-            $('#email_error').text('');
-            $('#email_error').text('');
-            $('#password_error').text('');
-            
-            var formData = new FormData($('#login')[0]);
+  $(document).on('click', '#save', function (e) {
+    e.preventDefault();
+    $('#firstname_error').text('');
+    $('#lastname_error').text('');
+    $('#email_error').text('');
+    $('#email_error').text('');
+    $('#password_error').text('');
     
-            $.ajax({
-                type: 'post',
-                url: "{{ route('login') }}",
-                data: formData,
-                processData: false,
-                contentType: false,
-                cache: false,
-                success: function (data) {
-                    window.location.href = "{{route('home')}}";
-                }, error: function (reject) {
-                    var response = $.parseJSON(reject.responseText);
-                    $.each(response.errors, function (key, val) {
-                        $("#" + key + "_error").text(val[0]);
-                    });
-                }
+    var formData = new FormData($('#login')[0]);
+
+    $.ajax({
+        type: 'post',
+        url: "{{ route('login') }}",
+        data: formData,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (data) {
+            window.location.href = "{{route('home')}}";
+        }, error: function (reject) {
+            var response = $.parseJSON(reject.responseText);
+            $.each(response.errors, function (key, val) {
+                $("#" + key + "_error").text(val[0]);
             });
-        });
-    </script>
-@endsection
+        }
+    });
+});
+</script>
+</body>
+</html>
+

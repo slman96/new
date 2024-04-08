@@ -6,7 +6,6 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Product;
 
 class User extends Authenticatable
 {
@@ -18,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname','lastname','user_type','phone','email', 'password',
+        'firstname','lastname','role','email', 'password',
     ];
 
     /**
@@ -38,8 +37,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function Product()
-    {
-        return $this->hasMany(Product::class)->orderBy('created_at', 'DESC');
-    }
+   
 }

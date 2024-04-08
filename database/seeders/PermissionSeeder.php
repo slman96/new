@@ -17,7 +17,7 @@ class PermissionSeeder extends Seeder
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         $AdminPermission = [
-            'mange users' ,'create' , 'update' , 'delete' ,'view' ,'change password'
+            'manage users' ,'create' , 'update' , 'delete' ,'view' ,'change password'
         ];
         $UserPermission = [
             'view current profile' , 'update his password'
@@ -32,7 +32,7 @@ class PermissionSeeder extends Seeder
         Permission::insert($AdminPermissions -> toArray());
         Permission::insert($UserPermissions -> toArray());
         
-        $AdminRole = Role::create(['name' => 'admin'])->givePermissionTo ($AdminPermission);
+        $AdminRole = Role::create(['name' => 'admin'])->givePermissionTo ([$AdminPermission,$UserPermission]);
         $UserRole = Role::create(['name' => 'user'])->givePermissionTo ($UserPermission);
 
     }
