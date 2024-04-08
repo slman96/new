@@ -2,13 +2,13 @@
 
 function upladeFile($image,$path )
 {
-  $imagepath =$image->store($path,'public');
+  $imagepath = Storage::putFile($path,$image);
   return $imagepath;
 }
 function upladeMaltiFile($images,$path)
 {
     foreach($images as $image){
-        $imagepath =$image->store($path,'public');
+        $imagepath = Storage::putFile($path,$image);
     }
     return $imagepath;
 }
