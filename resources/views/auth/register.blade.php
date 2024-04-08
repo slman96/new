@@ -53,6 +53,11 @@
             <div class="input-data">
                <a  href="{{ route('registerbyphone')}}"> Register by phone number</a>
             </div>
+            <div class="input-data">
+               <a href="{{ route('login') }}">
+                   have account ? Login now
+                </a>
+            </div>
 
          </div>
          <div class="form-row submit-btn">

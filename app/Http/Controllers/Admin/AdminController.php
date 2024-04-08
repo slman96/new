@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\product\ProductStoreRequest;
 use App\Http\Requests\user\UserStoreRequest;
 use Illuminate\Support\Facades\Hash;
+use App\DataTables\userDataTable;
 
 class AdminController extends Controller
 {
@@ -47,5 +48,9 @@ class AdminController extends Controller
         ]);
  
         return redirect('/dashbord');
+    }
+    public function index(userDataTable $dataTable){
+    
+        return $dataTable->render("Admin.showUser");
     }
 }

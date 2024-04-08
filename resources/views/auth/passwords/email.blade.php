@@ -1,47 +1,61 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="body">
+    <div class="container">
+        <div class="text">
+            Reset Password
         </div>
-    </div>
+        @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+        @endif
+         <form id="resetpassword" name="frm-login" method="POST" >
+            @csrf
+           <div class="form-row">
+              <div class="input-data">
+                 <input type="email"  name="email">
+                 <div class="underline"></div>
+                 <label for="email">Email</label>
+                 <small id="email_error" class="form-text text-danger"></small>
+              </div>
+            </br>
+           </div>
+         <div class="form-row submit-btn">
+            <div class="input-data"> 
+               <button class="inner" id= "save" style="color: #fff">
+                Send Password Reset Link
+            </button>
+           
+            </div>
+         </div> 
+        </form>
+        </div>
 </div>
+<script>
+        $(document).on('click', '#save', function (e) {
+            e.preventDefault();
+            $('#email_error').text('');
+            
+            var formData = new FormData($('#resetpassword')[0]);
+    
+            $.ajax({
+                type: 'post',
+                url: "{{ route('login') }}",
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (data) {
+                    window.location.href = "{{ route('password.email') }}";
+                }, error: function (reject) {
+                    var response = $.parseJSON(reject.responseText);
+                    $.each(response.errors, function (key, val) {
+                        $("#" + key + "_error").text(val[0]);
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
+

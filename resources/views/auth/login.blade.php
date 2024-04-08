@@ -36,6 +36,11 @@
                  </a>
                 @endif
              </div>
+             <div class="input-data">
+                <a href="{{ route('register') }}">
+                    don't have account ? Register now
+                 </a>
+             </div>
          </div>
          <div class="form-row submit-btn">
             <div class="input-data"> 

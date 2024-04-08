@@ -12,7 +12,8 @@ class userStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        if ($this->user()->can('create')){return true;};
+        return false;
     }
 
    
@@ -20,7 +21,7 @@ class userStoreRequest extends FormRequest
     {
        
         return [
-            'user_type'=> '',
+            'role'=> ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'phone' => ['string', 'max:10', 'unique:users'],

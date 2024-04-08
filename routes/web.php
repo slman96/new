@@ -15,9 +15,7 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
@@ -27,6 +25,7 @@ Route::post('/registerphone',[RigisterByPhoneController::class,'create'])->name(
 
 
 Route::middleware('auth')->group(function(){
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::controller(AdminController::class)->group(function(){
@@ -34,6 +33,7 @@ Route::middleware('auth')->group(function(){
         Route::get('/admin/product/create', 'createProduct')->name('admin.addProduct');
         Route::post('/admin/p','productStore')->name('admin.storeProduct');
         Route::post('/admin/user','userStore')->name('admin.storeUser');
+        Route::get('/showalluser', 'index')->name('admin.showUser');
     });
     
     Route::controller(DashboardController::class)->group(function(){

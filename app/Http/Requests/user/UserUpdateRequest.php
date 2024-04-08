@@ -11,14 +11,15 @@ class userUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        if ($this->user()->can('update')){return true;};
+        return false;
     }
 
     
     public function rules(): array
     {
         return [
-            'user_type'=> '',
+            'role'=> ['required', 'string', 'max:255'],
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'phone' => 'string|max:10|unique:users',
