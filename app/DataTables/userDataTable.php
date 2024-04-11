@@ -22,9 +22,7 @@ class userDataTable extends DataTable
         
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'user.action')
-           
-           ;
+            ->addColumn('action', 'Admin.User.Action.userAction')->rawColumns(['action']);
     }
 
     /**
@@ -68,7 +66,7 @@ class userDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id','user_type','firstname','lastname','phone','email'
+            'firstname','lastname','phone','email','address','image','country','action'
         ];
     }
 

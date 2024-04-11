@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="{{ asset('js/jquery.js') }}"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -22,7 +22,7 @@
 </head>
 <body>
 
-<script src="{{ asset('js/jquery.js') }}"></script>
+
 <div class="body">
     <div class="container">
         <div class="text">
@@ -72,11 +72,12 @@
         </div>
 </div>
 <script>
+$.ajaxSetup({
+             headers:{
+                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')}
+         });
   $(document).on('click', '#save', function (e) {
     e.preventDefault();
-    $('#firstname_error').text('');
-    $('#lastname_error').text('');
-    $('#email_error').text('');
     $('#email_error').text('');
     $('#password_error').text('');
     

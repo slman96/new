@@ -25,6 +25,10 @@ Route::group(['middleware' => ['role:admin','auth']], function () {
         Route::get('/admin/user/create', 'createUser')->name('admin.addUser');
         Route::post('/admin/user','userStore')->name('admin.storeUser');
         Route::get('/showalluser', 'index')->name('admin.showUser');
+        Route::post('/admin/destroyuser','destroy')->name('admin.UserDestroy');
+        Route::post('/show/user','userDetails')->name('admin.UserShow');
+        Route::get('/getuser/{id}', 'show')->name('get.user.details');
+        Route::post('/admin/updateuser/{id}','update')->name('admin.Userupdate');
     });
  });
 
@@ -32,7 +36,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::controller(DashboardController::class)->group(function(){
-    Route::get('/change-password','changePassword')->name('changePassword');
-    Route::post('/change-password','changePasswordSave')->name('postChangePassword');
+    Route::get('/change-password/{user}','changePassword')->name('changePassword');
+    Route::post('/changepasswordsave/{user}','changePasswordSave')->name('postChangePassword');
     });
 });

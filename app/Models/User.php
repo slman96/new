@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname','lastname','role','email', 'password',
+        'firstname','lastname','role','phone','address','image','country','email', 'password',
     ];
 
     /**
@@ -37,5 +37,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-   
+    public function setImageAttribute($image)
+    {
+        $this->attributes['image'] = uploadFile($image ,'userimage');
+    }
 }

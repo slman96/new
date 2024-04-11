@@ -4,20 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use DataTables;
 use App\Http\Requests\user\UserStoreRequest;
 use Illuminate\Support\Facades\Hash;
-use App\DataTables\userDataTable;
+use Illuminate\Http\Request;
+use App\Http\Requests\user\UserUpdateRequest;
 
 class AdminController extends Controller
 {
     public function createUser(){
-        return view('Admin.adduser');
+        return view('Admin.User.adduser');
     }
     public function userStore(UserStoreRequest $request){
         $data = $request->validated();
  
         User::create([
-            'user_type' => $data['user_type'],
+            'role' => $data['user_type'],
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'phone' => $data['phone'],
@@ -27,8 +29,78 @@ class AdminController extends Controller
  
         return redirect('/dashbord');
     }
-    public function index(userDataTable $dataTable){
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $users = User::select('*');
+            return Datatables::of($users)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        return '
+                        <a style="v: 10px" id="delete" href="javascript:void(0)" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm" >
+                        Delete
+                                 </a>
+                               <a style="margin-top: 10px" id="edit" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-success btn-sm"">
+                               Edit
+                               </a>
+                               <a style="margin-top: 10px" id="shwo" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-primary btn-sm"">
+                               Shwo
+                              </a>
+                              <a style="margin-top: 10px" href="/change-password/'.$row->id.'" class="btn btn-warning btn-sm"">
+                              Change Password
+                    </a>';
+                    })->addColumn('images',function($row){
+                        return '
+                        <a><img style="width:200px" src="/storage/'.$row->image.'" ></a>
+                        ';
+                    })
+                    ->rawColumns(['action','images'])
+                    ->make(true);
+        }
+        
+        return view('Admin.User.showUser');
+    }
+    // DELETE COUNTRY RECORD
+    public function destroy(Request $request){
+        $id = $request->user_id;
+        $query = User::findOrFail($id)->delete();
+
+        if($query){
+            return response()->json(['code'=>1, 'msg'=>'User has been deleted from database']);
+        }else{
+            return response()->json(['code'=>0, 'msg'=>'Something went wrong']);
+        }
+    }
+
+    // show user info
     
-        return $dataTable->render("Admin.showUser");
+    public function show($id){
+       
+       $user = User::find($id);
+       if($user){
+        return response()->json([
+          'status' => 200,
+          'user' =>$user,
+        ]);
+    }
+        else{
+            return response()->json([
+                'status' => 404,
+                'message' =>'eror',
+            ]);
+        }
+    }
+
+    // update user info
+
+    public function update(UserUpdateRequest $request ,$id){
+        $data = $request->validated();
+        
+        $user = User::findOrFail($id);
+        $user->update($data);
+
+        return response()->json([
+         'status' => 200,
+        ]);
     }
 }

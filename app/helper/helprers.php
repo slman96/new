@@ -1,11 +1,12 @@
 <?php
 
-function upladeFile($image,$path )
+function uploadFile($image,$path )
 {
   $imagepath = Storage::putFile($path,$image);
+  
   return $imagepath;
 }
-function upladeMaltiFile($images,$path)
+function uploadMultiFile($images,$path)
 {
     foreach($images as $image){
         $imagepath = Storage::putFile($path,$image);
