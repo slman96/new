@@ -25,7 +25,6 @@ Route::group(['middleware' => ['role:admin','auth']], function () {
         Route::post('/admin/user','store')->name('admin.storeUser');
         Route::get('/showalluser', 'index')->name('admin.showUser');
         Route::post('/admin/destroyuser','destroy')->name('admin.UserDestroy');
-        Route::post('/show/user','userDetails')->name('admin.UserShow');
         Route::get('/getuser/{id}', 'show')->name('get.user.details');
         Route::post('/admin/updateuser/{id}','update')->name('admin.Userupdate');
     });

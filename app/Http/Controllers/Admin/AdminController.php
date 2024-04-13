@@ -26,8 +26,12 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $users = User::select('*');
-            return Datatables::of($users)
+            $data = User::select('*');
+            if($request->filled('from_date') && $request->filled('to_date'))
+            {
+                $data = $data->whereBetween('created_at', [$request->from_date, $request->to_date]);
+            }
+            return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         return '
@@ -97,4 +101,5 @@ class AdminController extends Controller
          'status' => 200,
         ]);
     }
+
 }

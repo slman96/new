@@ -10,6 +10,14 @@
       </div>
     </br>
     <h1> user</h1>
+    @include('Admin.User.filter.select')
+    <a>filter by date</a>
+    <div  id="daterange" class="float-end" style="background:#fff ; cursor:pointer;padding:5px 10px;border:1px solid #ccc;width 100% ; text-aligh: center">
+    <i class="fa fa-calendar"></i>&nbsp;
+    <span></span>
+    <i class="fa fa-caret-down"></i>
+
+   </div>
     <table class="table table-bordered data-table">
         <thead>
             <tr>
@@ -55,10 +63,29 @@ $.ajaxSetup({
 // dataTable
 
 $(function () {
+    var start_date = moment().subtract(1, 'M');
+    var end_date = moment();
+
+  $('#daterange span').html(start_date.format('MMMM D, YYYY') + ' - ' + end_date.format('MMMM D, YYYY'));
+
+  $('#daterange').daterangepicker({
+    startDate : start_date,
+    endDate : end_date
+  }, function(start_date, end_date){
+    $('#daterange span').html(start_date.format('MMMM D, YYYY') + ' - ' + end_date.format('MMMM D, YYYY'));
+
+    table.draw();
+    });
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "",
+        ajax: {
+            url:"{{ route('admin.showUser') }}",
+            data : function(data){
+                data.from_date = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD');
+                data.to_date = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD');
+            }
+        },
         columns: [
             {data: 'firstname', name: 'firstname'},
             {data: 'lastname', name: 'lastname'},
@@ -70,7 +97,7 @@ $(function () {
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
-  });
+});
 
   // delete using ajax
 $(document).on('click','#delete', function (e) {
@@ -184,7 +211,19 @@ $(document).on('click','#shwo', function (e) {
                         $('#ShowUserRole').text(data.user.role);});
                         $('#showuser').modal('show');
                        
-                });
+});
+
+// search
+$('#countrySelect').change(function(){
+    if($(this).val() == "All"){
+     return   $('.data-table').DataTable();
+    }else{
+        $('.data-table').DataTable().column(3).search($(this).val()).draw();
+    }
+  
+});
+
+
 </script>
 </html>
 @endsection
