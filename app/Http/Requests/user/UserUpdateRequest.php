@@ -25,7 +25,7 @@ class UserUpdateRequest extends FormRequest
             'address'=> ['string', 'max:255'],
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'phone' => 'max:10|unique:users',
+            'phone_number' => 'max:10|unique:users',
             'email' => 'required|string|max:255|unique:users',
         ];
     }

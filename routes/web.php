@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Admincontroller;
-use App\Http\Controllers\Auth\RigisterByPhoneController;
 use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +22,7 @@ Auth::routes();
 Route::group(['middleware' => ['role:admin','auth']], function () { 
     Route::controller(AdminController::class)->group(function(){
         Route::get('/admin/user/create', 'createUser')->name('admin.addUser');
-        Route::post('/admin/user','userStore')->name('admin.storeUser');
+        Route::post('/admin/user','store')->name('admin.storeUser');
         Route::get('/showalluser', 'index')->name('admin.showUser');
         Route::post('/admin/destroyuser','destroy')->name('admin.UserDestroy');
         Route::post('/show/user','userDetails')->name('admin.UserShow');

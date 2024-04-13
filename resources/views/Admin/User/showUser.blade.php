@@ -2,9 +2,13 @@
 @section('content')
 
 <div class="container">
-    <div class="alert alert-success"  style="display: none;">
-       <a id="success_msg"></a>
-    </div>
+    <div class="card">
+        <h5 class="card-header">Add User</h5>
+        <div class="card-body">
+          <a href="{{route('admin.addUser')}}" class="btn btn-primary">Add User</a>
+        </div>
+      </div>
+    </br>
     <h1> user</h1>
     <table class="table table-bordered data-table">
         <thead>
@@ -14,7 +18,6 @@
                 <th>address</th>
                 <th>country</th>
                 <th>image</th>
-                <th>role</th>
                 <th>phone</th>
                 <th>Email</th>
                 <th width="100px">action</th>
@@ -62,8 +65,7 @@ $(function () {
             {data: 'address', name: 'address'},
             {data: 'country', name: 'country'},
             {data: 'images', name: 'images'},
-            {data: 'role', name: 'role'},
-            {data: 'phone', name: 'phone'},
+            {data: 'phone_number', name: 'phone'},
             {data: 'email', name: 'email'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
@@ -118,7 +120,7 @@ $(document).on('click','#edit', function(e){
                            $("#country").val(response.user.country);
                            $("#role").val(response.user.role);
                            $("#email").val(response.user.email);
-                           $("#phone").val(response.user.phone);
+                           $("#phone_number").val(response.user.phone_number);
                            $("#address").val(response.user.address);
                            $("#userid").val(user_id);
                            $("#image").val(response.user.iamge);}
@@ -135,7 +137,7 @@ $(document).on('click','#updateuser',function(e){
                 $('#country_error').text('');
                 $('#email_error').text('');
                 $('#image_error').text('');
-                $('#phone_error').text('');
+                $('#phone_number_error').text('');
                 $('#address_error').text('');
                
                    var user_id = $('#userid').val();
@@ -178,7 +180,7 @@ $(document).on('click','#shwo', function (e) {
                         $('#ShowUsreAddress').text(data.user.address);
                         $("#UserImage").attr('src','/storage/'+data.user.image+'');
                         $('#ShowUserEmail').text(data.user.email);
-                        $('#ShowUserPhone').text(data.user.phone);
+                        $('#ShowUserPhone').text(data.user.phone_number);
                         $('#ShowUserRole').text(data.user.role);});
                         $('#showuser').modal('show');
                        

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname','lastname','role','phone','address','image','country','email', 'password',
+        'firstname','lastname','role','phone_number','address','image','country','email', 'password',
     ];
 
     /**
@@ -41,4 +42,5 @@ class User extends Authenticatable
     {
         $this->attributes['image'] = uploadFile($image ,'userimage');
     }
+    
 }

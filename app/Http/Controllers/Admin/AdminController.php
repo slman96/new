@@ -15,19 +15,13 @@ class AdminController extends Controller
     public function createUser(){
         return view('Admin.User.adduser');
     }
-    public function userStore(UserStoreRequest $request){
+    public function store(UserStoreRequest $request){
         $data = $request->validated();
  
-        User::create([
-            'role' => $data['user_type'],
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
-            'phone' => $data['phone'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = User::create($data);
+        $user->assignRole('user');
  
-        return redirect('/dashbord');
+        return redirect()->route('admin.UserShow');
     }
     public function index(Request $request)
     {

@@ -15,8 +15,10 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.4",
+        "propaganistas/laravel-phone": "^4.4",
         "spatie/laravel-permission": "^6.4",
-        "yajra/laravel-datatables": "^1.5"
+        "yajra/laravel-datatables": "^1.5",
+        "yajra/laravel-datatables-buttons": "^4.13"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

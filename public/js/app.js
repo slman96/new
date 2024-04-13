@@ -51078,7 +51078,7 @@ Vue.component('follow-button', __webpack_require__(/*! ./components/FollowButton
 
 Vue.component('messinger', __webpack_require__(/*! ./components/messinger.vue */ "./resources/js/components/messinger.vue"));
 var app = new Vue({
-  el: '#app'
+  el: ''
 });
 
 /***/ }),

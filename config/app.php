@@ -123,6 +123,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'MapKey' =>env('Map_key'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -163,6 +165,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Yajra\DataTables\ButtonsServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -229,6 +232,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'DataTable' => Yajra\DataTables\DataTablesServiceProvider::class,
+        'DataTableButton' => Yajra\DataTables\ButtonsServiceProvider::class,
         'Spatie' => Spatie\Permission\PermissionServiceProvider::class
 
     ],

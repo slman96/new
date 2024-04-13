@@ -80,10 +80,10 @@
                         </div>
                         <div class="box-body" >
                         <div class="form-group">
-                          <label for="phone"> phone number:</label>
-                          <input class="form-control" type="number" name="phone" id="phone" placeholder="user phone number">
+                          <label for="phone_number"> phone number:</label>
+                          <input class="form-control" type="number" name="phone_number" id="phone_number" placeholder="user phone number">
                         
-                          <small id="phone_error" class="form-text text-danger"></small>
+                          <small id="phone_number_error" class="form-text text-danger"></small>
                         </div>
                         </div>
                         <div class="box-body">
