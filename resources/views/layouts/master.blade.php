@@ -24,7 +24,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 <!-- Top container -->
 
-<div class="w3-bar w3-theme-d2 w3-left-align w3-large w3-black " style="z-index:4">
+<div class="w3-bar w3-top w3-theme-d2 w3-left-align w3-large w3-black " style="z-index:4">
   
   <a class="w3-bar-item w3-left" ><img src="{{asset('img/companyname.png')}}" style="width: 100px"></a>
   <div class="w3-dropdown-hover w3-hide-small w3-right">
@@ -44,8 +44,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       </form>
     </div>
   </div>
- 
-
 </div>
 
 
@@ -61,13 +59,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <h5>Dashboard</h5>
   </div>
   <div class="w3-bar-block">
-    <a href="{{route('admin.showUser')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i><b> {{auth::user()->firstname}}</b></a>
+  
     @can('manage users')
        <a href="{{route('admin.showUser')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Users</a>
     @endcan
-    @can('update his password')
-    <a href="{{route('changePassword',Auth::user()->id)}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  update password</a>
-    @endcan
+   
   
 
   </div>

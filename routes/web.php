@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['role:admin','auth']], function () { 
     Route::controller(AdminController::class)->group(function(){
-        Route::get('/admin/user/create', 'createUser')->name('admin.addUser');
+        Route::get('/admin/user/create', 'create')->name('admin.addUser');
         Route::post('/admin/user','store')->name('admin.storeUser');
         Route::get('/showalluser', 'index')->name('admin.showUser');
         Route::post('/admin/destroyuser','destroy')->name('admin.UserDestroy');

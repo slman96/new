@@ -63,7 +63,7 @@ class userDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'firstname','lastname','phone','email','address','image','country','action'
+            'firstname','lastname','phone_number','email','address','image','country','action'
         ];
     }
 

@@ -12,12 +12,11 @@ use App\Http\Requests\user\UserUpdateRequest;
 
 class AdminController extends Controller
 {
-    public function createUser(){
+    public function create(){
         return view('Admin.User.adduser');
     }
     public function store(UserStoreRequest $request){
         $data = $request->validated();
- 
         $user = User::create($data);
         $user->assignRole('user');
  
@@ -35,17 +34,17 @@ class AdminController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         return '
-                        <a style="v: 10px" id="delete" href="javascript:void(0)" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm" >
+                        <a style="v: 10px" id="delete " href="javascript:void(0)" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm" >
                         Delete
-                                 </a>
-                               <a style="margin-top: 10px" id="edit" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-success btn-sm"">
-                               Edit
-                               </a>
-                               <a style="margin-top: 10px" id="shwo" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-primary btn-sm"">
-                               Shwo
-                              </a>
-                              <a style="margin-top: 10px" href="/change-password/'.$row->id.'" class="btn btn-warning btn-sm"">
-                              Change Password
+                        </a>
+                        <a style="margin-top: 10px" id="edit" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-success btn-sm"">
+                        Edit
+                        </a>
+                        <a style="margin-top: 10px" id="shwo" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-primary btn-sm"">
+                        Shwo
+                        </a>
+                        <a style="margin-top: 10px" href="/change-password/'.$row->id.'" class="btn btn-warning btn-sm"">
+                        Change Password
                     </a>';
                     })->addColumn('images',function($row){
                         return '
