@@ -13,13 +13,13 @@
       <input type="hidden" id="storeRoute" value="{{route('admin.storeUser')}}">
       <div class="box-body">
           <div class="row">
-            <div class="col-md 6">
+            <div class="col-md-6 ">
               <label for="firstname">first name:</label>
               <input name="firstname" type="text" class="form-control" id="firstname" placeholder="user first name">
               <small  id="firstname_error" class=" form-text text-danger"></small>
              </div>
       
-            <div class="col-md 6">
+            <div class="col-md-6">
               <label for="lastname">last name:</label>
               <input name="lastname" type="text" class="form-control" id="lastname" placeholder="user last name">
               <small id="lastname_error" class="form-text text-danger"></small>
@@ -27,7 +27,7 @@
           </div>
         </br>
           <div class="row">
-            <div class="col-md 6">
+            <div class="col-md-6">
               <label for="country">country:</label>
               <select id="country" name="country" class="form-control">
                 <option value="Syria">Syria</option>
@@ -63,7 +63,7 @@
           </div>
         </br>
           <div class="row">
-            <div class="col-md 6">
+            <div class="col-md-6">
               <label for="phone_number"> phone number:</label>
             </br>
               <div class="iti">
@@ -71,7 +71,7 @@
               <small id="phone_number_error" class="form-text text-danger"></small>
              </div>
             </div>
-            <div class="col-md 6">
+            <div class="col-md-6">
               <label for="email">email address:</label>
               <input class="form-control" type="email" name="email" id="email" placeholder="user email address">
               <small id="email_error" class="form-text text-danger"></small>
@@ -79,12 +79,12 @@
           </div>
         </br>
           <div class="row">
-            <div class="col-md 6">
+            <div class="col-md-6">
                 <label for="password">password:</label>
                 <input class="form-control" type="password" name="password" id="password" placeholder="user password">
                 <small id="password_error" class="form-text text-danger"></small>
             </div>
-            <div class="col-md 6">
+            <div class="col-md-6">
               <label for="password-confirm">password confirm:</label>
               <input class="form-control" type="password" name="password-confirm" id="password-confirm" placeholder="user password confirm">
             </div>

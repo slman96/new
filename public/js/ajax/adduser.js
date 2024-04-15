@@ -27,7 +27,7 @@ console.log(store);
    contentType: false,
    cache: false,
    success: function (data) {
-             console.log('slman');
+           window.location.href = "/showalluser";
        }, error: function (reject) {
        var response = $.parseJSON(reject.responseText);
        $.each(response.errors, function (key, val) {

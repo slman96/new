@@ -22,6 +22,8 @@ $(function () {
         var table = $('.data-table').DataTable({
            processing: true,
            serverSide: true,
+           dom: 'lBfrtip',
+            buttons: [ 'excel', 'csv', 'pdf' ],
            ajax: {
              url: showUser,
              data : function(data){
@@ -38,6 +40,7 @@ $(function () {
              {data: 'action', name: 'action', orderable: false, searchable: false},
          ]
       });
+      
       $("div.dataTables_filter input").unbind();
       $("div.dataTables_filter input").keyup( function (e) {
          if (e.keyCode == 13) {
@@ -164,6 +167,8 @@ $('#countrySelect').change(function(){
     console.log($(this).val());
      $('.data-table').DataTable().column(3).search($(this).val()).draw();
 });
+
+
 $('#filterbtn').click(function(e){
     e.preventDefault();
     var formData = new FormData($('#datrange')[0]);

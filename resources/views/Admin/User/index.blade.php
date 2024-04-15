@@ -33,12 +33,12 @@
         <tbody>
         </tbody>
     </table>
+    @include('Admin.User.Modal.showUser')
+    @include('Admin.User.Modal.editUser')
 </div>
 
-@include('Admin.User.Modal.showUser')
-@include('Admin.User.Modal.editUser')
+
 
 <script src="{{asset("js/ajax/showuser.js")}}">
 </script>
-</html>
 @endsection
