@@ -16,17 +16,18 @@ $('#phone_number_error').text('');
 $('#password_error').text('');
 
 var formData = new FormData($('#adduser')[0]);
-
+var store = $('#storeRoute').val();
+console.log(store);
  $.ajax({
    type: 'post',
    enctype: 'multipart/form-data',
-   url: "{{route('admin.storeUser')}}",
+   url: store,
    data: formData,
    processData: false,
    contentType: false,
    cache: false,
    success: function (data) {
-               window.location.href = "{{route('admin.showUser')}}";
+             console.log('slman');
        }, error: function (reject) {
        var response = $.parseJSON(reject.responseText);
        $.each(response.errors, function (key, val) {

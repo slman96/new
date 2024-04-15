@@ -23,28 +23,35 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <body class="w3-light-grey">
 
 <!-- Top container -->
-
-<div class="w3-bar w3-top w3-theme-d2 w3-left-align w3-large w3-black " style="z-index:4">
-  
-  <a class="w3-bar-item w3-left" ><img src="{{asset('img/companyname.png')}}" style="width: 100px"></a>
-  <div class="w3-dropdown-hover w3-hide-small w3-right">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-language"></i></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" >
-      <a href="#" class="w3-bar-item w3-button">ar</a>
-      <a href="#" class="w3-bar-item w3-button">an</a>
+<nav class="navbar fixed-top bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" ><img src="{{asset('img/companyname.png')}}" style="width: 100px"></a>
+    <div>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i style="color: #fff" class="fa fa-language"></i>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="#">AR</a></li>
+          <li><a class="dropdown-item" href="#">EN</a></li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i style="color: #fff" class="fa fa-user-o"></i>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="#">{{Auth::user()->firstname}}</a></li>
+          <li><a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+               </form>
+          </ul>
+      </li> 
+      </div>
     </div>
   </div>
-  <div class="w3-dropdown-hover w3-hide-small w3-right">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-user-o"></i></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="padding-right: 20px">
-      <a href="#" class="w3-bar-item w3-button">{{Auth::user()->firstname}}</a>
-      <a class="w3-bar-item w3-button" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  Logout</a>
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-     @csrf
-      </form>
-    </div>
-  </div>
-</div>
+</nav>
 
 
 <!-- Sidebar/menu -->
@@ -84,12 +91,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
   <script src="/vendor/datatables/buttons.server-side.js"></script>
-  
+  <div style="margin-bottom: 53px">
     @yield('content')
-    <footer class="w3-container w3-padding-16 w3-light-grey">
-      <h4>FOOTER</h4>
-      <p>Copy right save &copy; 2024 <a href="#">company name</a></p>
-    </footer>
+  </div>
+    
+    <nav class="fixed-bottom navbar bg-dark">
+      <h4 style="color: #fff">FOOTER</h4>
+      <p style="color: #fff">Copy right save &copy; 2024 <a href="#">company name</a></p>
+    </nav>
+
 </div>
 
 <script>

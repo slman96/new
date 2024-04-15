@@ -20,32 +20,34 @@ class AdminController extends Controller
         $user = User::create($data);
         $user->assignRole('user');
  
-        return redirect()->route('admin.UserShow');
+        return redirect()->route('admin.index');
     }
     public function index(Request $request)
     {
         if ($request->ajax()) {
             $data = User::select('*');
-            if($request->filled('from_date') && $request->filled('to_date'))
+            if($request->filled('startdate') && $request->filled('enddate'))
             {
-                $data = $data->whereBetween('created_at', [$request->from_date, $request->to_date]);
+                $startdate = $request->startdate;
+                $enddate = $request->enddate;
+                $data = $data->whereBetween('created_at', [$startdate, $enddate]);
             }
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         return '
-                        <a style="v: 10px" id="delete " href="javascript:void(0)" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm" >
+                        <a style="v: 10px" id="delete" href="javascript:void(0)" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm" >
                         Delete
-                        </a>
+                        </a><br>
                         <a style="margin-top: 10px" id="edit" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-success btn-sm"">
                         Edit
-                        </a>
+                        </a><br>
                         <a style="margin-top: 10px" id="shwo" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-primary btn-sm"">
-                        Shwo
-                        </a>
+                        Show
+                        </a><br>
                         <a style="margin-top: 10px" href="/change-password/'.$row->id.'" class="btn btn-warning btn-sm"">
                         Change Password
-                    </a>';
+                    </a><br>';
                     })->addColumn('images',function($row){
                         return '
                         <a><img style="width:200px" src="/storage/'.$row->image.'" ></a>
@@ -53,9 +55,8 @@ class AdminController extends Controller
                     })
                     ->rawColumns(['action','images'])
                     ->make(true);
-        }
-        
-        return view('Admin.User.showUser');
+                 }
+        return view('Admin.User.index');
     }
     // DELETE COUNTRY RECORD
     public function destroy(Request $request){
@@ -100,5 +101,17 @@ class AdminController extends Controller
          'status' => 200,
         ]);
     }
+    // filter
+    public function filter(Request $request){
+        $startdate = $request->startdate;
+        $enddate = $request->enddate;
 
+        $users = User::whereDate('created_at','>=',$startdate)
+                                ->whereDate('created_at','<=',$enddate)
+                                ->get();
+        return response()->json([
+            'status'=> 200,
+            'users'=> $users,
+        ]);
+    }
 }

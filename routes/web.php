@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Admincontroller;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,13 +27,14 @@ Route::group(['middleware' => ['role:admin','auth']], function () {
         Route::post('/admin/destroyuser','destroy')->name('admin.UserDestroy');
         Route::get('/getuser/{id}', 'show')->name('get.user.details');
         Route::post('/admin/updateuser/{id}','update')->name('admin.Userupdate');
+        Route::post('/admin/filter','filter')->name('admin.filter');
     });
  });
 
 Route::middleware('auth')->group(function(){
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::controller(DashboardController::class)->group(function(){
+    Route::controller(HomeController::class)->group(function(){
+    Route::get('/', 'index');
+    Route::get('/home', 'index')->name('home');
     Route::get('/change-password/{user}','changePassword')->name('changePassword');
     Route::post('/changepasswordsave/{user}','changePasswordSave')->name('postChangePassword');
     });

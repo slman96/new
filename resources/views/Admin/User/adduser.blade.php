@@ -10,6 +10,7 @@
     
     <form method="POST" action="" id="adduser">
       @csrf
+      <input type="hidden" id="storeRoute" value="{{route('admin.storeUser')}}">
       <div class="box-body">
           <div class="row">
             <div class="col-md 6">
@@ -110,7 +111,7 @@
           </form>  
       </div>
   
-<script src="js/ajax/adduser.js" ></script>
+<script src="{{asset('js/ajax/adduser.js')}}" ></script>
 <script src="{{asset('js/map.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('app.MapKey') }}&libraries=places&callback=initAutocomplete&language=en&region=sy
 async defer"></script>

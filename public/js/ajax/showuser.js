@@ -11,57 +11,47 @@ const Toast = Swal.mixin({
     toast.onmouseleave = Swal.resumeTimer;
     }
 });
-
 // ajax setup
-
 $.ajaxSetup({
          headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')}
 });
-
 // dataTable
-
 $(function () {
-var start_date = moment().subtract(1, 'M');
-var end_date = moment();
-
-$('#daterange span').html(start_date.format('MMMM D, YYYY') + ' - ' + end_date.format('MMMM D, YYYY'));
-
-$('#daterange').daterangepicker({
-startDate : start_date,
-endDate : end_date
-}, function(start_date, end_date){
-$('#daterange span').html(start_date.format('MMMM D, YYYY') + ' - ' + end_date.format('MMMM D, YYYY'));
-
-table.draw();
+       
+        var showUser = $('#showUser').val();
+        var table = $('.data-table').DataTable({
+           processing: true,
+           serverSide: true,
+           ajax: {
+             url: showUser,
+             data : function(data){
+             }
+            },
+          columns: [
+             {data: 'firstname', name: 'firstname'},
+             {data: 'lastname', name: 'lastname'},
+             {data: 'address', name: 'address'},
+             {data: 'country', name: 'country'},
+             {data: 'images', name: 'images'},
+             {data: 'phone_number', name: 'phone_number'},
+             {data: 'email', name: 'email'},
+             {data: 'action', name: 'action', orderable: false, searchable: false},
+         ]
+      });
+      $("div.dataTables_filter input").unbind();
+      $("div.dataTables_filter input").keyup( function (e) {
+         if (e.keyCode == 13) {
+            $('.data-table').DataTable().search($(this).val()).draw();
+         }
+       });
 });
-var table = $('.data-table').DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: {
-        url:"{{ route('admin.showUser') }}",
-        data : function(data){
-            data.from_date = $('#daterange').data('daterangepicker').startDate.format('YYYY-MM-DD');
-            data.to_date = $('#daterange').data('daterangepicker').endDate.format('YYYY-MM-DD');
-        }
-    },
-    columns: [
-        {data: 'firstname', name: 'firstname'},
-        {data: 'lastname', name: 'lastname'},
-        {data: 'address', name: 'address'},
-        {data: 'country', name: 'country'},
-        {data: 'images', name: 'images'},
-        {data: 'phone_number', name: 'phone_number'},
-        {data: 'email', name: 'email'},
-        {data: 'action', name: 'action', orderable: false, searchable: false},
-    ]
-});
-});
-
 // delete using ajax
+var deleteUser = $('#deleteUser').val();
 $(document).on('click','#delete', function (e) {
                 e.preventDefault();
                 var user_id = $(this).data('id');
-                var url = '{{ route("admin.UserDestroy") }}';
+                var url = deleteUser;
+                console.log(deleteUser);
                 swal.fire({
                      title:'Are you sure?',
                      html:'You want to <b>delete</b> this',
@@ -90,7 +80,6 @@ $(document).on('click','#delete', function (e) {
                       }
                 });    
 });
-
 // update using ajax
 $(document).on('click','#edit', function(e){
                 e.preventDefault();
@@ -112,7 +101,6 @@ $(document).on('click','#edit', function(e){
                 });
 
 });
-
 
 $(document).on('click','#updateuser',function(e){
                 e.preventDefault();
@@ -173,13 +161,24 @@ $(document).on('click','#shwo', function (e) {
 
 // search
 $('#countrySelect').change(function(){
-
-$('.data-table').DataTable().column(3).search($(this).val()).draw();
-
+    console.log($(this).val());
+     $('.data-table').DataTable().column(3).search($(this).val()).draw();
 });
-$('#search-button').click(function(){
-
-var search = $('#search').val();
-$('.data-table').DataTable().search(search).draw();
-
+$('#filterbtn').click(function(e){
+    e.preventDefault();
+    var formData = new FormData($('#datrange')[0]);
+                $.ajax({
+                    type : "post",
+                    url :"/admin/filter",
+                    data : formData,
+                    dataType :"json",
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                success: function (response) {
+                    $('.data-table').DataTable().clear().draw();
+                    $('.data-table').DataTable().rows.add(response.data);
+                    $('.data-table').DataTable().columns.adjust().draw();
+                }
+  });
 });
