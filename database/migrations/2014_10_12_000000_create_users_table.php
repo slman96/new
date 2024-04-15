@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->string('role')->nullable();
             $table->string('address')->nullable();
-            $table->bigInteger('latitude')->nullable();
-            $table->bigInteger('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->string('phone_number')->unique()->nullable();
             $table->string('image')->nullable();
             $table->string('country')->nullable();

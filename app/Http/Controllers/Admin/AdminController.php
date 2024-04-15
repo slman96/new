@@ -17,6 +17,8 @@ class AdminController extends Controller
     }
     public function store(UserStoreRequest $request){
         $data = $request->validated();
+        $data['role']= 'user';
+        $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
         $user->assignRole('user');
  
