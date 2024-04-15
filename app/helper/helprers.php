@@ -1,17 +1,15 @@
 <?php
 
-function uploadFile($image,$path )
+function uploadFile($image,$path,$disk )
 {
-  $iamgename = $image->getClientOriginalName();
-  $imagepath = Storage::disk('local')->put($path . '/' . $iamgename , $image);
+  $imagepath = Storage::disk($disk)->Put($path , $image);
   
   return $imagepath;
 }
-function uploadMultiFile($images,$path)
+function uploadMultiFile($images,$path,$disk)
 {
     foreach($images as $image){
-      $iamgename = $image->getClientOriginalName();
-      $imagepath = Storage::disk('local')->put($path . '/' . $iamgename , $image);
+      $imagepath = Storage::disk($disk)->put($path, $image);
     }
     
     return $imagepath;

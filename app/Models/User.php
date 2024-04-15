@@ -40,7 +40,7 @@ class User extends Authenticatable
     ];
     public function setImageAttribute($image)
     {
-        $this->attributes['image'] = uploadFile($image ,'userimage');
+        $this->attributes['image'] = uploadFile($image ,'userimage','local');
     }
     
 }
