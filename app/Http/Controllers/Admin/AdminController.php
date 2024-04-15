@@ -21,17 +21,18 @@ class AdminController extends Controller
         $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
         $user->assignRole('user');
- 
+
         return redirect()->route('admin.index');
     }
     public function index(Request $request)
     {
         if ($request->ajax()) {
             $data = User::select('*');
-            if($request->filled('startdate') && $request->filled('enddate'))
+
+            if($request->filled('start_date') && $request->filled('end_date'))
             {
-                $startdate = $request->startdate;
-                $enddate = $request->enddate;
+                $startdate = $request->start_date;
+                $enddate = $request->end_date;
                 $data = $data->whereBetween('created_at', [$startdate, $enddate]);
             }
             return Datatables::of($data)
@@ -73,9 +74,9 @@ class AdminController extends Controller
     }
 
     // show user info
-    
+
     public function show($id){
-       
+
        $user = User::find($id);
        if($user){
         return response()->json([
@@ -95,7 +96,7 @@ class AdminController extends Controller
 
     public function update(UserUpdateRequest $request ,$id){
         $data = $request->validated();
-        
+
         $user = User::findOrFail($id);
         $user->update($data);
 
