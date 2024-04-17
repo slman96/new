@@ -65,7 +65,7 @@ $(function () {
     $("div.dt-search input").unbind();
     $("div.dt-search input").keyup(function (e) {
         if (e.keyCode == 13) {
-            $(".data-table").DataTable().search($(this).val()).draw();
+            $(".data-table").DataTable().filter($(this).val()).draw();
         }
     });
 });
@@ -189,7 +189,6 @@ $(document).on("click", "#shwo", function (e) {
 
 // search
 $("#countrySelect").change(function () {
-    console.log($(this).val());
     $(".data-table").DataTable().column(3).search($(this).val()).draw();
 });
 $("#filterbtn").click(function (e) {
