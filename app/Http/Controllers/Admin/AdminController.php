@@ -39,7 +39,8 @@ class AdminController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         return '
-                        <a style="v: 10px" id="delete" href="javascript:void(0)" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm" >
+                        <div id="actionColumn">
+                        <a style="" id="delete" href="javascript:void(0)" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm" >
                         Delete
                         </a><br>
                         <a style="margin-top: 10px" id="edit" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-success btn-sm"">
@@ -50,7 +51,8 @@ class AdminController extends Controller
                         </a><br>
                         <a style="margin-top: 10px" href="/change-password/'.$row->id.'" class="btn btn-warning btn-sm"">
                         Change Password
-                    </a><br>';
+                    </a><br>
+                    </div>';
                     })->addColumn('images',function($row){
                         return '
                         <a><img style="width:200px" src="/storage/'.$row->image.'" ></a>

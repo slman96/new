@@ -18,6 +18,7 @@ $.ajaxSetup({
 var table;
 $(function () {
     var showUser = $("#showUser").val();
+   
     table = $(".data-table").DataTable({
         processing: true,
         serverSide: true,
@@ -44,7 +45,6 @@ $(function () {
                 d.start_date = $("#startdate").val();
                 d.end_date = $("#enddate").val();
             },
-           
         },
         columns: [
             { data: "firstname", name: "firstname" },
@@ -62,8 +62,8 @@ $(function () {
             },
         ],
     });
-    $("div.dataTables_filter input").unbind();
-    $("div.dataTables_filter input").keyup(function (e) {
+    $("div.dt-search input").unbind();
+    $("div.dt-search input").keyup(function (e) {
         if (e.keyCode == 13) {
             $(".data-table").DataTable().search($(this).val()).draw();
         }
