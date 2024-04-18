@@ -15,7 +15,7 @@
                         <div class="box-body">
                             <div class="form-group">
                               <label for="firstname">first name:</label>
-                              <input name="firstname" type="text" class="form-control" id="firstname" placeholder="user type">
+                              <input name="firstname" type="text" class="form-control" id="firstname" placeholder="user first name">
                               <small id="firstname_error" class="form-text text-danger"></small>
                              </div>
                            </div>
@@ -68,9 +68,12 @@
                         <div class="box-body">
                         <div class="form-group">
                           <label for="address">address:</label>
-                          <input class="form-control" type="text" name="address" id="address" placeholder="user address">
+                          <input type="hidden" name="latitude" id="latitude">
+                          <input type="hidden" name="longitude" id="longitude">
+                          <input class="form-control" type="text" name="address" id="pac-input" placeholder="search">
                           <small id="address_error" class="form-text text-danger"></small>
                         </div>
+                        <div id="map" style="width: 470px; height:500px"></div>
                     </div>
                         <div class="box-body">
                         <div class="form-group">
@@ -78,19 +81,20 @@
                             <input class="form-control" type="file" name="image" id="image" placeholder="user address">
                         </div>
                         </div>
+                        <div class="img-holder" ></div>
                         <div class="box-body" >
                         <div class="form-group">
                           <label for="phone_number"> phone number:</label>
-                          <input class="form-control" type="number" name="phone_number" id="phone_number" placeholder="user phone number">
-                        
-                          <small id="phone_number_error" class="form-text text-danger"></small>
+                           <div class="iti">
+                            <input name="phone_number" id="phone_number" type="tel"> 
+                           </div>
+                           <small id="phone_number_error" class="form-text text-danger"></small>
                         </div>
                         </div>
                         <div class="box-body">
                         <div class="form-group">
                           <label for="email">email address:</label>
                           <input class="form-control" type="email" name="email" id="email" placeholder="user email address">
-                        
                           <small id="email_error" class="form-text text-danger"></small>
                         </div>
                         </div>  
@@ -107,3 +111,6 @@
         </div>
     </div>
 </div>
+<script src="{{asset('js/map.js')}}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('app.MapKey') }}&libraries=places&callback=initAutocomplete&language=en&region=sy
+async defer"></script>

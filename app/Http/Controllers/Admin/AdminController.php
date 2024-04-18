@@ -49,13 +49,13 @@ class AdminController extends Controller
                         <a style="margin-top: 10px" id="shwo" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-primary btn-sm"">
                         Show
                         </a><br>
-                        <a style="margin-top: 10px" href="/change-password/'.$row->id.'" class="btn btn-warning btn-sm"">
+                        <a style="margin-top: 10px" id="changepassword"  href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-warning btn-sm"">
                         Change Password
                     </a><br>
                     </div>';
                     })->addColumn('images',function($row){
                         return '
-                        <a><img style="width:200px" src="/storage/'.$row->image.'" ></a>
+                        <a><img style="width:200px" src="'.$row->userImage().'" ></a>
                         ';
                     })
                     ->rawColumns(['action','images'])

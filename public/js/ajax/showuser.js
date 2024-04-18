@@ -65,7 +65,7 @@ $(function () {
     $("div.dt-search input").unbind();
     $("div.dt-search input").keyup(function (e) {
         if (e.keyCode == 13) {
-            $(".data-table").DataTable().filter($(this).val()).draw();
+            $(".data-table").DataTable().search($(this).val()).draw();
         }
     });
 });
@@ -179,7 +179,11 @@ $(document).on("click", "#shwo", function (e) {
         $("#ShowUserLastName").text(data.user.lastname);
         $("#ShowUserCountry").text(data.user.country);
         $("#ShowUsreAddress").text(data.user.address);
-        $("#UserImage").attr("src", "/storage/" + data.user.image + "");
+        if(data.user.image != null){
+            $("#UserImage").attr("src", "/storage/" + data.user.image + "");
+        }else{
+            $("#UserImage").attr("src", "/storage/userdefault/defaultImage.png");
+        }
         $("#ShowUserEmail").text(data.user.email);
         $("#ShowUserPhone").text(data.user.phone_number);
         $("#ShowUserRole").text(data.user.role);
@@ -195,3 +199,68 @@ $("#filterbtn").click(function (e) {
     e.preventDefault();
     table.draw();
 });
+
+$('input[type="file"][name="image"]').val('');
+   $('input[type="file"][name="image"]').on('change', function(){
+       var img_path = $(this)[0].value;
+       var img_holder = $('.img-holder');
+       var extension = img_path.substring(img_path.lastIndexOf('.')+1).toLowerCase();
+       if(extension == 'jpeg' || extension == 'jpg' || extension == 'png'){
+            if(typeof(FileReader) != 'undefined'){
+                 img_holder.empty();
+                 var reader = new FileReader();
+                 reader.onload = function(e){
+                     $('<img/>',{'src':e.target.result,'class':'img-fluid','style':'max-width:150px;margin-bottom:10px;'}).appendTo(img_holder);
+                 }
+                 img_holder.show();
+                 reader.readAsDataURL($(this)[0].files[0]);
+            }else{
+                $(img_holder).html('This browser does not support FileReader');
+            }
+       }else{
+           $(img_holder).empty();
+       }
+   });
+
+   
+// update password using ajax
+$(document).on("click", "#changepassword", function (e) {
+    e.preventDefault();
+    var user_id = $(this).data("id");
+    $("#changePasswordModel").modal("show");
+    $("#userid").val(user_id);
+});
+
+$(document).on("click", "#updatepassword", function (e) {
+    e.preventDefault();
+    $("#new_password_error").text("");
+    $("#new_password_confirmation_error").text("");
+    var user_id = $("#userid").val();
+    console.log(user_id);
+    var formData = new FormData($("#changePasswordForm")[0]);
+    $.ajax({
+        type: "post",
+        url: "/changepasswordsave/" + user_id,
+        data: formData,
+        enctype: "multipart/form-data",
+        dataType: "json",
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (response) {
+            $("#changePasswordModel").modal("hide");
+            $(".data-table").DataTable().ajax.reload(null, false);
+            Toast.fire({
+                icon: "success",
+                title: "User Password have been updated",
+            });
+        },
+        error: function (reject) {
+            var response = $.parseJSON(reject.responseText);
+            $.each(response.errors, function (key, val) {
+                $("#" + key + "_error").text(val[0]);
+            });
+        },
+    });
+});
+

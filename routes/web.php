@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Admincontroller;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Profile\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,8 +32,9 @@ Route::group(['middleware' => ['role:admin','auth']], function () {
  });
 
 Route::middleware('auth')->group(function(){
-    Route::controller(HomeController::class)->group(function(){
+    Route::controller(ProfileController::class)->group(function(){
     Route::get('/', 'index');
+    Route::get('/profile', 'index');
     Route::get('/home', 'index')->name('home');
     Route::get('/change-password/{user}','changePassword')->name('changePassword');
     Route::post('/changepasswordsave/{user}','changePasswordSave')->name('postChangePassword');

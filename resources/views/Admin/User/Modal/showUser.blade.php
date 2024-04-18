@@ -8,38 +8,74 @@
                   </button>
             </div>
             <div class="modal-body">
-                   <div>
-                    <a> User first name:</a>
-                    <a id="showUserFirstName"> </a>
-                   </div>
-                   <div>
-                    <a>User last name:</a>
-                    <a id="ShowUserLastName"> </a>
-                   </div>
-                   <div>
-                    <a>User Country:</a>
-                    <a id="ShowUserCountry"></a>
-                   </div>
-                   <div>
-                    <a>User image:</a></br>
-                    <a id="ShowUserImage"><img style="width: 200px" id="UserImage" src=""></a>
-                   </div>
-                   <div>
-                    <a>User Address:</a>
-                    <a id="ShowUsreAddress"></a>
-                   </div>
-                   <div>
-                    <a>User Email:</a>
-                    <a id="ShowUserEmail"></a>
-                   </div>
-                   <div>
-                    <a>User Phone:</a>
-                    <a id="ShowUserPhone"></a>
-                   </div>
-                   <div>
-                    <a>User Role:</a>
-                    <a id="ShowUserRole"></a>
-                   </div>
+                   <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+                        <div class="my-4">   
+                                <div class="row mt-5 align-items-center">
+                                    <div class="col-md-3 text-center mb-12">
+                                        <div class="avatar avatar-xl">
+                                            <img id="UserImage" src="" alt="..." class="avatar-img r" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Fisrt name</label>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <p class="small mb-0 text-muted" id="showUserFirstName"></p>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Last Name</label>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <p class="small mb-0 text-muted" id="ShowUserLastName"></p>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <p class="small mb-0 text-muted" id="ShowUserEmail"></p>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Country</label>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <p class="small mb-0 text-muted" id="ShowUserCountry"></p>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Phone number</label>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <p class="small mb-0 text-muted" id="ShowUserPhone"></p>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Role</label>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <p class="small mb-0 text-muted" id="ShowUserRole"></p>
+                                    </div>
+                                </div>
+                            <hr class="my-4" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

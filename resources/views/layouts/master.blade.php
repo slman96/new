@@ -25,7 +25,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <!-- Top container -->
 <nav class="navbar fixed-top bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" ><img src="{{asset('img/companyname.png')}}" style="width: 100px"></a>
+    <a class="navbar-brand" href="/" ><img src="{{asset('img/companyname.png')}}" style="width: 100px"></a>
     <div>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,7 +41,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           <i style="color: #fff" class="fa fa-user-o"></i>
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#">{{Auth::user()->firstname}}</a></li>
+          <li><a class="dropdown-item" href="/profile">{{Auth::user()->firstname}}</a></li>
           <li><a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">  Logout</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
               @csrf
@@ -52,13 +52,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
   </div>
 </nav>
-
-
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
   <div class="w3-container w3-row">
     <div class="w3-col s8 w3-bar">
-      <span>Welcome, <strong>{{Auth::user()->firstname}}</strong></span><br>
+      <span>Welcome, <a style="  color: rgb(0, 0, 0);" href="/profile"><strong >{{Auth::user()->firstname}}</strong></a></span><br>
     </div>
   </div>
   <hr>

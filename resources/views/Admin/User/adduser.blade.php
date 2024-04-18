@@ -59,7 +59,7 @@
               <input class="form-control" type="file" name="image" id="image" placeholder="user address">
               <small id="image_error" class="form-text text-danger"></small>
               <div class="img-holder" ></div>
-             </div>
+            </div>
           </div>
         </br>
           <div class="row">
@@ -68,8 +68,8 @@
             </br>
               <div class="iti">
               <input name="phone_number" id="phone_number" type="tel"> 
-              <small id="phone_number_error" class="form-text text-danger"></small>
              </div>
+             <small id="phone_number_error" class="form-text text-danger"></small>
             </div>
             <div class="col-md-6">
               <label for="email">email address:</label>
@@ -98,7 +98,7 @@
               <input class="form-control" type="text" name="address" id="pac-input" placeholder="search">
               <small id="address_error" class="form-text text-danger"></small>
             </div>
-          </div>
+        </div>
         <div id="map" style="width: 1000px; height:500px"></div>
          </br>
           <div class="form-check">

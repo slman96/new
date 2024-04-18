@@ -14,19 +14,19 @@ class UserUpdateRequest extends FormRequest
         if ($this->user()->can('update')){return true;};
         return false;
     }
-
-    
     public function rules(): array
     {
         return [
             'role'=> ['required', 'string', 'max:255'],
             'country'=> ['string', 'max:255'],
-            'image'=> ['required'],
-            'address'=> ['string', 'max:255'],
+            'image'=> [''],
+            'address' => ['required'],
+            'latitude' => [''],
+            'longitude' => [''],
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'phone_number' => 'max:10|unique:users',
-            'email' => 'required|string|max:255|unique:users',
+            'phone_number' => 'required',
+            'email' => 'required|string|max:255',
         ];
     }
 }

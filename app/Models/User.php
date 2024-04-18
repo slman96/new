@@ -42,5 +42,9 @@ class User extends Authenticatable
     {
         $this->attributes['image'] = uploadFile($image ,'userimage','local');
     }
-    
+    public  function userImage()
+    {
+        $imagePath = ( $this->image) ?  $this->image :'userdefault/defaultImage.png';
+        return'/storage/' . $imagePath;
+    }
 }

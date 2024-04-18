@@ -35,10 +35,8 @@
     </table>
     @include('Admin.User.Modal.showUser')
     @include('Admin.User.Modal.editUser')
+    @include('Admin.User.Modal.changePassword')
 </div>
-
-
-
 <script src="{{asset("js/ajax/showuser.js")}}">
 </script>
 @endsection
