@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master',['title' => Auth::user()->firstname])
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -25,7 +25,7 @@
                     <hr class="my-4" />
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Firstname</label>
+                            <label>{{__('strings.Firstname')}}</label>
                         </div>
                         <div class="form-group col-md-6">
                             <p class="small mb-0 text-muted">{{Auth::user()->firstname}}</p>
@@ -34,7 +34,7 @@
                     <hr class="my-4" />
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Lastname</label>
+                            <label>{{__('strings.Lastname')}}</label>
                         </div>
                         <div class="form-group col-md-6">
                             <p class="small mb-0 text-muted">{{Auth::user()->lastname}}</p>
@@ -43,7 +43,7 @@
                     <hr class="my-4" />
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Email</label>
+                            <label>{{__('strings.Email')}}</label>
                         </div>
                         <div class="form-group col-md-6">
                             <p class="small mb-0 text-muted">{{Auth::user()->email}}</p>
@@ -52,7 +52,7 @@
                     <hr class="my-4" />
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Phone</label>
+                            <label>{{__('strings.Phone')}}</label>
                         </div>
                         <div class="form-group col-md-6">
                             <p class="small mb-0 text-muted">{{Auth::user()->phone_number}}</p>
@@ -61,7 +61,7 @@
                     <hr class="my-4" />
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Country</label>
+                            <label>{{__('strings.Country')}}</label>
                         </div>
                         <div class="form-group col-md-6">
                             <p class="small mb-0 text-muted">{{Auth::user()->country}}</p>
@@ -70,7 +70,7 @@
                     <hr class="my-4" />
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Address</label>
+                            <label>{{__('strings.Address')}}</label>
                         </div>
                         <div class="form-group col-md-6">
                             <p class="small mb-0 text-muted">{{Auth::user()->address}}</p>
@@ -83,28 +83,28 @@
                             <div class="col-md-6">
                                 <input type="hidden" id="userid" value="{{Auth::user()->id}}">
                                 <div class="form-group">
-                                    <label for="new_password">New Password</label>
+                                    <label for="new_password">{{__('strings.New_Password')}}</label>
                                     <input type="password" class="form-control" id="new_password" name="new_password" />
                                     <small id="new_password_error" class="form-text text-danger"></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="new_password_confirmation">Confirm Password</label>
+                                    <label for="new_password_confirmation">{{__('strings.Confirm_Password')}}</label>
                                     <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" />
                                     <small id="new_password_confirmation_error" class="form-text text-danger"></small>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <p class="mb-2">Password requirements</p>
-                                <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
+                                <p class="mb-2">{{__('strings.Password_requirements')}}</p>
+                                <p class="small text-muted mb-2">{{__('strings.To_create_a_new_password')}}</p>
                                 <ul class="small text-muted pl-4 mb-0">
-                                    <li id="length" class="invalid">Minimum 6 character</li>
-                                    <li id="letter" class="invalid">At least one letter</li>
-                                    <li id="numbers" class="invalid">At least one number</li>
-                                    <li id="Confirm" class="invalid">New pasword must be Confirm</li>
+                                    <li id="length" class="invalid">{{__('strings.Minimum_6_character')}}</li>
+                                    <li id="letter" class="invalid">{{__('strings.At_least_one_letter')}}</li>
+                                    <li id="numbers" class="invalid">{{__('strings.At_least_one_number')}}</li>
+                                    <li id="Confirm" class="invalid">{{__('strings.New_pasword_must_be_Confirm')}}</li>
                                 </ul>
                             </div>
                         </div>
-                        <button id="save" class="btn btn-success">Save Change</button>
+                        <button id="save" class="btn btn-success">{{__('strings.Save_Chang')}}</button>
                     </form>
             </div>
         </div>

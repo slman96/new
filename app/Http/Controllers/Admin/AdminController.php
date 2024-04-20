@@ -41,16 +41,16 @@ class AdminController extends Controller
                         return '
                         <div id="actionColumn">
                         <a style="" id="delete" href="javascript:void(0)" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm" >
-                        Delete
+                       '.__("strings.Delete").'
                         </a><br>
                         <a style="margin-top: 10px" id="edit" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-success btn-sm"">
-                        Edit
+                        '.__("strings.Edit").'
                         </a><br>
                         <a style="margin-top: 10px" id="shwo" href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-primary btn-sm"">
-                        Show
+                         '.__("strings.Show").'
                         </a><br>
                         <a style="margin-top: 10px" id="changepassword"  href="javascript:void(0)" data-id="'.$row['id'].'" class="btn btn-warning btn-sm"">
-                        Change Password
+                         '.__("strings.Change_Password").'
                     </a><br>
                     </div>';
                     })->addColumn('images',function($row){

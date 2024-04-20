@@ -1,34 +1,34 @@
-@extends('layouts.master')
+@extends('layouts.master',['title' => __("strings.Add_User")])
 @section('content')
 <div class="alert alert-success" id="success_msg" style="display: none;">
    User add successfly
  </div>
 <div class="container">
     <div class="text">
-       Add user
+      {{__("strings.Add_User")}}
     </div>
-    
+    <input type="hidden" id="lang" value="{{App::currentLocale()}}">
     <form method="POST" action="" id="adduser">
       @csrf
       <input type="hidden" id="storeRoute" value="{{route('admin.storeUser')}}">
       <div class="box-body">
           <div class="row">
             <div class="col-md-6 ">
-              <label for="firstname">first name:</label>
-              <input name="firstname" type="text" class="form-control" id="firstname" placeholder="user first name">
+              <label for="firstname">{{__("strings.Firstname")}}:</label>
+              <input name="firstname" type="text" class="form-control" id="firstname" placeholder="{{__("strings.Firstname")}}">
               <small  id="firstname_error" class=" form-text text-danger"></small>
              </div>
       
             <div class="col-md-6">
-              <label for="lastname">last name:</label>
-              <input name="lastname" type="text" class="form-control" id="lastname" placeholder="user last name">
+              <label for="lastname">{{__("strings.Lastname")}}:</label>
+              <input name="lastname" type="text" class="form-control" id="lastname" placeholder="{{__("strings.Lastname")}}">
               <small id="lastname_error" class="form-text text-danger"></small>
              </div>
           </div>
         </br>
           <div class="row">
             <div class="col-md-6">
-              <label for="country">country:</label>
+              <label for="country">{{__('strings.Country')}}:</label>
               <select id="country" name="country" class="form-control">
                 <option value="Syria">Syria</option>
                 <option value="Lebanon">Lebanon</option>
@@ -55,7 +55,7 @@
              </div>
       
             <div class="col-md 6">
-              <label for="image">image:</label>
+              <label for="image">{{__("strings.Image")}}:</label>
               <input class="form-control" type="file" name="image" id="image" placeholder="user address">
               <small id="image_error" class="form-text text-danger"></small>
               <div class="img-holder" ></div>
@@ -64,7 +64,7 @@
         </br>
           <div class="row">
             <div class="col-md-6">
-              <label for="phone_number"> phone number:</label>
+              <label for="phone_number"> {{__("strings.Phone")}}:</label>
             </br>
               <div class="iti">
               <input name="phone_number" id="phone_number" type="tel"> 
@@ -72,30 +72,31 @@
              <small id="phone_number_error" class="form-text text-danger"></small>
             </div>
             <div class="col-md-6">
-              <label for="email">email address:</label>
-              <input class="form-control" type="email" name="email" id="email" placeholder="user email address">
+              <label for="email">{{__("strings.Email")}}:</label>
+              <input class="form-control" type="email" name="email" id="email" placeholder="{{__("strings.Email")}}">
               <small id="email_error" class="form-text text-danger"></small>
              </div>
           </div>
         </br>
           <div class="row">
             <div class="col-md-6">
-                <label for="password">password:</label>
-                <input class="form-control" type="password" name="password" id="password" placeholder="user password">
+                <label for="password">{{__("strings.password")}}:</label>
+                <input class="form-control" type="password" name="password" id="password" placeholder="{{__("strings.password")}}">
                 <small id="password_error" class="form-text text-danger"></small>
             </div>
             <div class="col-md-6">
-              <label for="password-confirm">password confirm:</label>
-              <input class="form-control" type="password" name="password-confirm" id="password-confirm" placeholder="user password confirm">
+              <label for="password_confirmation">{{__("strings.password_confirm")}}:</label>
+              <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" placeholder="{{__("strings.password_confirm")}}">
+              <small id="password_confirmation_error" class="form-text text-danger"></small>
             </div>
           </div>
         </br>
        <div class="box-body">
             <div class="form-group">
-              <label for="address">address:</label>
+              <label for="address">{{__('strings.Address')}}:</label>
               <input type="hidden" name="latitude" id="latitude">
               <input type="hidden" name="longitude" id="longitude">
-              <input class="form-control" type="text" name="address" id="pac-input" placeholder="search">
+              <input class="form-control" type="text" name="address" id="pac-input" placeholder="{{__("strings.search")}}">
               <small id="address_error" class="form-text text-danger"></small>
             </div>
         </div>
@@ -104,7 +105,7 @@
           <div class="form-check">
             <div class="box-footer">
                 <div class="form-group">
-                    <button id="save" class="btn btn-success">Add user</button>
+                    <button id="save" class="btn btn-success">{{__("strings.Add_User")}}</button>
                 </div>
             </div>
             </div>

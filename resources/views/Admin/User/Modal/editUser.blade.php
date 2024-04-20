@@ -2,8 +2,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit User Info</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">{{__("strings.Edit_User_Info")}}</h5>
+                <button type="button" style="{{__("strings.closeBtn")}}" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
             </div>
@@ -14,29 +14,29 @@
                     <div class="box-body">
                         <div class="box-body">
                             <div class="form-group">
-                              <label for="firstname">first name:</label>
-                              <input name="firstname" type="text" class="form-control" id="firstname" placeholder="user first name">
+                              <label for="firstname">{{__("strings.Firstname")}}</label>
+                              <input name="firstname" type="text" class="form-control" id="firstname" placeholder="{{__("strings.Firstname")}}">
                               <small id="firstname_error" class="form-text text-danger"></small>
                              </div>
                            </div>
                            <div class="box-body">
                             <div class="form-group">
-                              <label for="lastname">last name:</label>
-                              <input name="lastname" type="text" class="form-control" id="lastname" placeholder="user last name">
+                              <label for="lastname">{{__("strings.Lastname")}}</label>
+                              <input name="lastname" type="text" class="form-control" id="lastname" placeholder="{{__("strings.Lastname")}}">
                               <small id="lastname_error" class="form-text text-danger"></small>
                              </div>
                            </div>
                        <div class="box-body">
                         <div class="form-group">
-                          <label for="role">user role:</label>
+                          <label for="role" >{{__('strings.role')}}</label>
                           <select id="role" name="role" class="form-control">
-                            <option value="user">user</option>
-                            <option value="admin">admin</option>
+                            <option value="user">{{__('strings.user')}}</option>
+                            <option value="admin">{{__('strings.admin')}}</option>
                           </select>
                           <small id="role_error" class="form-text text-danger"></small>
                         </div>
                         <div class="form-group">
-                            <label for="country">country:</label>
+                            <label for="country">{{__('strings.Country')}}</label>
                             <select id="country" name="country" class="form-control">
                               <option value="Syria">Syria</option>
                               <option value="Lebanon">Lebanon</option>
@@ -67,24 +67,24 @@
                         </div>
                         <div class="box-body">
                         <div class="form-group">
-                          <label for="address">address:</label>
+                          <label for="address">{{__('strings.Address')}}</label>
                           <input type="hidden" name="latitude" id="latitude">
                           <input type="hidden" name="longitude" id="longitude">
-                          <input class="form-control" type="text" name="address" id="pac-input" placeholder="search">
+                          <input class="form-control" type="text" name="address" id="pac-input" placeholder="{{__("strings.search")}}">
                           <small id="address_error" class="form-text text-danger"></small>
                         </div>
                         <div id="map" style="width: 470px; height:500px"></div>
                     </div>
                         <div class="box-body">
                         <div class="form-group">
-                            <label for="image">image:</label>
-                            <input class="form-control" type="file" name="image" id="image" placeholder="user address">
+                            <label for="image">{{__("strings.Image")}}:</label>
+                            <input class="form-control" type="file" name="image" id="image" >
                         </div>
                         </div>
                         <div class="img-holder" ></div>
                         <div class="box-body" >
                         <div class="form-group">
-                          <label for="phone_number"> phone number:</label>
+                          <label for="phone_number"> {{__("strings.Phone")}}</label>
                            <div class="iti">
                             <input name="phone_number" id="phone_number" type="tel"> 
                            </div>
@@ -93,8 +93,8 @@
                         </div>
                         <div class="box-body">
                         <div class="form-group">
-                          <label for="email">email address:</label>
-                          <input class="form-control" type="email" name="email" id="email" placeholder="user email address">
+                          <label for="email">{{__("strings.Email")}}</label>
+                          <input class="form-control" type="email" name="email" id="email" placeholder="{{__("strings.Email")}}">
                           <small id="email_error" class="form-text text-danger"></small>
                         </div>
                         </div>  

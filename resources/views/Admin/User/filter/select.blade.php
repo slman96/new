@@ -1,20 +1,4 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.bootstrap5.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.colVis.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <style>
     .select2-container .select2-selection--single{
     height:34px !important;
@@ -24,33 +8,33 @@
      border-radius: 0px !important; 
 }
 </style>
-<div class="row">
+<div class="row" dir="{{__("strings.ltr")}}">
   <div class="col-md-12">
     <form>
-        <label>Filter by country</label>
+        <label>{{__("strings.Filter_by_country")}}</label>
             <select id="countrySelect" name="country" class="form-control select2">
-                <option value="">All</option>
-                <option value="Syria">Syria</option>
-                <option value="Lebanon">Lebanon</option>
-                <option value="Iraq">Iraq</option>
-                <option value="Jordan">Jordan</option>
-                <option value="Palestine">Palestine</option>
-                <option value="Saudi Arabia">Saudi Arabia</option>
-                <option value="United Arab Emirates">United Arab Emirates</option>
-                <option value="Bahrain">Bahrain</option>
-                <option value="Oman">Oman</option>
-                <option value="Kuwait">Kuwait</option>
-                <option value="Yemen">Yemen</option>
-                <option value="Qatar">Qatar</option>
-                <option value="Egypt">Egypt</option>
-                <option value="Libya">Libya</option>
-                <option value="Algeria">Algeria</option>
-                <option value="Morocco">Morocco</option>
-                <option value="Sudan">Sudan</option>
-                <option value="Tunisia">Tunisia</option>
-                <option value="Somalia">Somalia</option>
-                <option value="Mauritania">Mauritania</option>
-                <option value="Djibouti">Djibouti</option>
+                <option value="">{{__("strings.All")}}</option>
+                <option value="Syria">{{__("strings.Syria")}}</option>
+                <option value="Lebanon">{{__("strings.Lebanon")}}</option>
+                <option value="Iraq">{{__("strings.Iraq")}}</option>
+                <option value="Jordan">{{__("strings.Jordan")}}</option>
+                <option value="Palestine">{{__("strings.Palestine")}}</option>
+                <option value="Saudi Arabia">{{__("strings.Saudi_Arabia")}}</option>
+                <option value="United Arab Emirates">{{__("strings.United_Arab_Emirates")}}</option>
+                <option value="Bahrain">{{__("strings.Bahrain")}}</option>
+                <option value="Oman">{{__("strings.Oman")}}</option>
+                <option value="Kuwait">{{__("strings.Kuwait")}}</option>
+                <option value="Yemen">{{__("strings.Yemen")}}</option>
+                <option value="Qatar">{{__("strings.Qatar")}}</option>
+                <option value="Egypt">{{__("strings.Egypt")}}</option>
+                <option value="Libya">{{__("strings.Libya")}}</option>
+                <option value="Algeria">{{__("strings.Algeria")}}</option>
+                <option value="Morocco">{{__("strings.Morocco")}}</option>
+                <option value="Sudan">{{__("strings.Sudan")}}</option>
+                <option value="Tunisia">{{__("strings.Tunisia")}}</option>
+                <option value="Somalia">{{__("strings.Somalia")}}</option>
+                <option value="Mauritania">{{__("strings.Mauritania")}}</option>
+                <option value="Djibouti">{{__("strings.Djibouti")}}</option>
               </select>
     </form>
   </div>

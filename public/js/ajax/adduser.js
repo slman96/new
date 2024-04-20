@@ -1,5 +1,15 @@
-
-
+// alert massage
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    },
+});
 
 // ajax setup
 $.ajaxSetup({
@@ -13,10 +23,13 @@ $('#lastname_error').text('');
 $('#email_error').text('');
 $('#image_error').text('');
 $('#phone_number_error').text('');
+$('#address_error').text('');
 $('#password_error').text('');
+$('#password_confirmation_error').text('');
 
 var formData = new FormData($('#adduser')[0]);
 var store = $('#storeRoute').val();
+var lang = $("#lang").val();
 console.log(store);
  $.ajax({
    type: 'post',
@@ -26,11 +39,32 @@ console.log(store);
    processData: false,
    contentType: false,
    cache: false,
-   success: function (data) {
-           window.location.href = "/showalluser";
+   success: function (response) {
+    if(lang == 'ar'){
+        Toast.fire({
+            icon: "success",
+            title: "تمت إضافة المستخدم",
+        });
+    }else{
+        Toast.fire({
+            icon: "success",
+            title: "User added ",
+        });
+    }
        }, error: function (reject) {
        var response = $.parseJSON(reject.responseText);
        $.each(response.errors, function (key, val) {
+        if(lang == 'ar'){
+            Toast.fire({
+                icon: "error",
+                title: "لم يتم اضافة المستخدم هناك مشكلة",
+            });
+        }else{
+            Toast.fire({
+                icon: "error",
+                title: "The user was not added. There is a problem",
+            });
+        }
            $("#" + key + "_error").text(val[0]);
        });
    }

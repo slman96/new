@@ -18,8 +18,29 @@ $.ajaxSetup({
 var table;
 $(function () {
     var showUser = $("#showUser").val();
-   
+    if(lang == 'ar'){
+        var language = {
+
+            "sProcessing": "جارٍ التحميل...",
+            "sLengthMenu": "أظهر _MENU_ مدخلات",
+            "sZeroRecords": "لم يعثر على أية سجلات",
+            "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+            "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+            "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+            "sInfoPostFix": "",
+            "sSearch": "ابحث:",
+            "sUrl": "",
+            "oPaginate": {
+                "sFirst": "الأول",
+                "sPrevious": "السابق",
+                "sNext": "التالي",
+                "sLast": "الأخير"
+            }
+        
+        };
+    } 
     table = $(".data-table").DataTable({
+        language: language,
         processing: true,
         serverSide: true,
         lengthMenu: [[10,25, 100, -1], [10,25, 100, "All"]],
@@ -36,7 +57,15 @@ $(function () {
         {extend: 'csv',   text: '<span class="fa fa-file-o"></span> csv Export',
         exportOptions: {
             columns: [0, 1, 2, 3,4,5,6]
-        }},
+        }},{
+        text: 'csv all',
+        action: function ( e, dt, node, config ) {
+            $('.dt-length').val('True');
+            var myTable = this;
+            table.ajax.reload( function ( json ) {
+                $('.buttons-csv').click();
+        }); }
+        }
         ],
         // 
         ajax: {
@@ -69,46 +98,55 @@ $(function () {
         }
     });
 });
+
 // delete using ajax
 var deleteUser = $("#deleteUser").val();
+var lang = $("#lang").val();
+if(lang == 'ar'){
+  var text = ["هل تريد حذف هذا المستخدم؟","الغاء","نعم , حذف","تم حذف المستخدم",];
+}else{
+  var text =["You want to <b>delete</b> this","Cancel","Yes, Delete","User has been deleted",];
+}
 $(document).on("click", "#delete", function (e) {
     e.preventDefault();
     var user_id = $(this).data("id");
     var url = deleteUser;
     console.log(deleteUser);
-    swal.fire({
-        title: "Are you sure?",
-        html: "You want to <b>delete</b> this",
-        showCancelButton: true,
-        showCloseButton: true,
-        cancelButtonText: "Cancel",
-        confirmButtonText: "Yes, Delete",
-        cancelButtonColor: "#d33",
-        confirmButtonColor: "#556ee6",
-        width: 300,
-        allowOutsideClick: false,
-    }).then(function (result) {
-        if (result.value) {
-            $.post(
-                url,
-                { user_id: user_id },
-                function (data) {
-                    if (data.code == 1) {
-                        $(".data-table").DataTable().ajax.reload(null, false);
-                        $("#edituser").modal("hide");
-                        Toast.fire({
-                            icon: "error",
-                            title: "User has been deleted",
-                        });
-                    } else {
-                        $("#success_msg").data("msg");
-                    }
-                },
-                "json"
-            );
-        }
+        swal.fire({
+            icon :"warning",
+            html: text[0],
+            showCancelButton: true,
+            showCloseButton: true,
+            cancelButtonText: text[1],
+            confirmButtonText: text[2],
+            cancelButtonColor: "#d33",
+            confirmButtonColor: "#556ee6",
+            width: 300,
+            allowOutsideClick: false,
+        })    .then(function (result) {
+            if (result.value) {
+                $.post(
+                    url,
+                    { user_id: user_id },
+                    function (data) {
+                        if (data.code == 1) {
+                            $(".data-table").DataTable().ajax.reload(null, false);
+                            $("#edituser").modal("hide");
+                            Toast.fire({
+                                icon: "error",
+                                title: text[3],
+                            });
+                        } else {
+                            $("#success_msg").data("msg");
+                        }
+                    },
+                    "json"
+                );
+            }
+        });
     });
-});
+
+
 // update using ajax
 $(document).on("click", "#edit", function (e) {
     e.preventDefault();
@@ -156,10 +194,18 @@ $(document).on("click", "#updateuser", function (e) {
         success: function (response) {
             $("#edituser").modal("hide");
             $(".data-table").DataTable().ajax.reload(null, false);
-            Toast.fire({
-                icon: "success",
-                title: "User has been updated",
-            });
+            if(lang == 'ar'){
+                Toast.fire({
+                    icon: "success",
+                    title: "تم تعديل السمستخدم",
+                });
+            }else{
+                Toast.fire({
+                    icon: "success",
+                    title: "User has been updated",
+                });
+            }
+         
         },
         error: function (reject) {
             var response = $.parseJSON(reject.responseText);
@@ -250,10 +296,17 @@ $(document).on("click", "#updatepassword", function (e) {
         success: function (response) {
             $("#changePasswordModel").modal("hide");
             $(".data-table").DataTable().ajax.reload(null, false);
-            Toast.fire({
-                icon: "success",
-                title: "User Password have been updated",
-            });
+            if(lang == 'ar'){
+                Toast.fire({
+                    icon: "success",
+                    title: "تم تغيير كلمة السر للمستخدم",
+                });
+            }else{
+                Toast.fire({
+                    icon: "success",
+                    title: "User Password have been updated",
+                });
+            }
         },
         error: function (reject) {
             var response = $.parseJSON(reject.responseText);

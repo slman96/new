@@ -233,22 +233,13 @@ tr:hover #actionColumn{
   color: green;
 }
 
-.valid:before {
-  position: relative;
-  left: -35px;
-  content: "✔";
-}
 
 /* Add a red text color and an "x" icon when the requirements are wrong */
 .invalid {
   color: red;
 }
 
-.invalid:before {
-  position: relative;
-  left: -35px;
-  content: "✖";
-}
+
 .avatar-xl img {
     width: 200px;
 }
