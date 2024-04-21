@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
@@ -35,8 +36,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           <i style="color: #fff" class="fa fa-language"></i>
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="text-align:{{__("strings.left")}};">
-          <li><a class="dropdown-item" href="/ar">AR</a></li>
-          <li><a class="dropdown-item" href="/en">EN</a></li>
+          <li><a class="dropdown-item" href="/lang/ar">AR</a></li>
+          <li><a class="dropdown-item" href="/lang/en">EN</a></li>
         </ul>
       </li>
       <li class="nav-item dropdown">
@@ -59,7 +60,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-{{__("strings.left")}} " style="z-index:3;width:200px;" id="mySidebar"><br>
   <div class="w3-container w3-row">
     <div class="w3-col s8 w3-bar">
-      <span>{{__("strings.Welcome")}}, <a style="  color: rgb(0, 0, 0);" href="/{{App::currentLocale()}}/profile"><strong >{{Auth::user()->firstname}}</strong></a></span><br>
+      <span>{{__("strings.Welcome")}}, <a style="  color: rgb(0, 0, 0);" href="/profile"><strong >{{Auth::user()->firstname}}</strong></a></span><br>
     </div>
   </div>
   <hr>

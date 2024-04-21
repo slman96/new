@@ -10,7 +10,7 @@
     "Confirm_Password"=> "تاكيد كلمة المرور",
     "Password_requirements"=> "متطلبات كلمة المرور",
     "To_create_a_new_password"=> "لإنشاء كلمة مرور جديدة، يجب عليك تلبية جميع المتطلبات التالية:",
-    "Minimum_6_character"=> "الحد الأدنى 6 حرف",
+    "Minimum_6_character"=> "الحد الأدنى 6 احرف و أرقام",
     "At_least_one_letter"=> "على الاقل حرف واحد",
     "At_least_one_number"=> "على الاقل رقم واحد",
     "New_pasword_must_be_Confirm"=> "يجب تأكيد كلمة المرور الجديدة",

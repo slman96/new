@@ -20,12 +20,12 @@ use App\Http\Controllers\Profile\ProfileController;
 
 Auth::routes();
 
-Route::get("/{lang}", [LangController::class,'change']);
+Route::get("/lang/{lang}", [LangController::class,'change']);
 Route::group(['middleware' => ['role:admin','auth',LangMiddleware::class]], function () { 
     Route::controller(AdminController::class)->group(function(){
         Route::get('/admin/user/create', 'create')->name('admin.addUser');
         Route::post('/admin/user','store')->name('admin.storeUser');
-        Route::get(App::currentLocale().'/showalluser', 'index')->name('admin.showUser');
+        Route::get('/showalluser', 'index')->name('admin.showUser');
         Route::post('/admin/destroyuser','destroy')->name('admin.UserDestroy');
         Route::get('/getuser/{id}', 'show')->name('get.user.details');
         Route::post('/admin/updateuser/{id}','update')->name('admin.Userupdate');
@@ -33,10 +33,10 @@ Route::group(['middleware' => ['role:admin','auth',LangMiddleware::class]], func
     });
  });
 
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth',LangMiddleware::class])->group(function(){
     Route::controller(ProfileController::class)->group(function(){
     Route::get('/', 'index');
-    Route::get('/{lang}/profile', 'index');
+    Route::get('/profile', 'index');
     Route::get('/home', 'index')->name('home');
     Route::get('/change-password/{user}','changePassword')->name('changePassword');
     Route::post('/changepasswordsave/{user}','changePasswordSave')->name('postChangePassword');

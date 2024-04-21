@@ -39,7 +39,7 @@
                                 <hr class="my-4" />
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label>Email</label>
+                                        <label>{{__("strings.Email")}}</label>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <p class="small mb-0 text-muted" id="ShowUserEmail"></p>
