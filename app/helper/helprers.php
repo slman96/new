@@ -2,14 +2,18 @@
 
 function uploadFile($image,$path,$disk )
 {
-  $imagepath = Storage::disk($disk)->Put($path , $image);
+  $imageName = $image->getClientOriginalName();
+  $imagepath = Storage::disk($disk);
+  $imagepath = Storage::putFileAs($path ,$image, $imageName);
   
   return $imagepath;
 }
 function uploadMultiFile($images,$path,$disk)
 {
     foreach($images as $image){
-      $imagepath = Storage::disk($disk)->put($path, $image);
+      $imageName = $image->getClientOriginalName();
+      $imagepath = Storage::disk($disk);
+      $imagepath = Storage::putFileAs($path ,$image, $imageName);
     }
     
     return $imagepath;

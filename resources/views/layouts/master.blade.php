@@ -80,6 +80,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/international-telephone-input.js') }}"></script>
+  <script src="{{ asset('font/pdfmake.js') }}"></script>
+  <script src="{{ asset('font/vfs_fonts.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="  https://code.jquery.com/jquery-3.7.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
