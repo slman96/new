@@ -166,6 +166,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Yajra\DataTables\ButtonsServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,7 +234,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTable' => Yajra\DataTables\DataTablesServiceProvider::class,
         'DataTableButton' => Yajra\DataTables\ButtonsServiceProvider::class,
-        'Spatie' => Spatie\Permission\PermissionServiceProvider::class
+        'Spatie' => Spatie\Permission\PermissionServiceProvider::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

@@ -28,6 +28,8 @@ Route::group(['middleware' => ['role:admin','auth',LangMiddleware::class]], func
         Route::get('/showalluser', 'index')->name('admin.showUser');
         Route::post('/admin/destroyuser','destroy')->name('admin.UserDestroy');
         Route::get('/getuser/{id}', 'show')->name('get.user.details');
+        Route::get('users/exportCsv', 'exportCsv');
+        Route::get('users/exportPdf', 'exportPdf');
         Route::post('/admin/updateuser/{id}','update')->name('admin.Userupdate');
         Route::post('/admin/filter','filter')->name('admin.filter');
     });

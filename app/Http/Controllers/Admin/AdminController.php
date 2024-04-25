@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use DataTables;
@@ -9,6 +10,8 @@ use App\Http\Requests\user\UserStoreRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Requests\user\UserUpdateRequest;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -119,4 +122,13 @@ class AdminController extends Controller
             'users'=> $users,
         ]);
     }
+
+    public function exportCsv()
+{
+    return Excel::download(new UsersExport, 'users.csv' ,\Maatwebsite\Excel\Excel::CSV);
+}
+public function exportPdf()
+{
+    return Excel::download(new UsersExport, 'users.pdf' ,\Maatwebsite\Excel\Excel::DOMPDF);
+}
 }

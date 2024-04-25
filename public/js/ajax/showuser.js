@@ -35,7 +35,6 @@ $(function () {
                 "sNext": "التالي",
                 "sLast": "الأخير"
             }
-        
         };
     } 
     table = $(".data-table").DataTable({
@@ -89,14 +88,28 @@ $(function () {
         exportOptions: {
             columns: [0, 1, 2, 3,5,6]
         }},{
-        text: 'csv all',
+        text: 'CSV all',
         action: function ( e, dt, node, config ) {
-            $('.dt-length').val('True');
-            var myTable = this;
-            table.ajax.reload( function ( json ) {
-                $('.buttons-csv').click();
-        }); }
-        }
+            $.ajax({
+                type: "get",
+                url: "users/exportCsv",
+                success: function (response) {
+                    window.location.href = 'users/exportCsv';
+                },
+            });
+        },
+        },{
+            text: 'PDF all',
+            action: function ( e, dt, node, config ) {
+                $.ajax({
+                    type: "get",
+                    url: "users/exportPdf",
+                    success: function (response) {
+                        window.location.href = 'users/exportPdf';
+                    },
+                });
+            },
+            }
         ],
         // 
         ajax: {
@@ -236,7 +249,6 @@ $(document).on("click", "#updateuser", function (e) {
                     title: "User has been updated",
                 });
             }
-         
         },
         error: function (reject) {
             var response = $.parseJSON(reject.responseText);
