@@ -22,6 +22,7 @@
 <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="{{ asset('css/international-telephone-input.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
@@ -96,6 +97,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
   <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
   <div>
     @yield('content')
   </div>
