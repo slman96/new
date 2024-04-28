@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\User;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -13,7 +14,7 @@ use App\Http\Requests\user\UserUpdateRequest;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 
-class AdminController extends Controller
+class AdminUserController extends Controller
 {
     public function create(){
         return view('Admin.User.adduser');
@@ -31,7 +32,6 @@ class AdminController extends Controller
     {
         if ($request->ajax()) {
             $data = User::select('*');
-
             if($request->filled('start_date') && $request->filled('end_date'))
             {
                 $startdate = $request->start_date;
@@ -69,8 +69,13 @@ class AdminController extends Controller
     // DELETE COUNTRY RECORD
     public function destroy(Request $request){
         $id = $request->user_id;
-        $query = User::findOrFail($id)->delete();
-
+        $user = User::findOrFail($id);
+        $image_path = public_path().'/storage/'.$user->image ;
+        $query = $user ->delete();
+         if(File::exists($image_path)) {
+           File::delete($image_path);
+           }
+        
         if($query){
             return response()->json(['code'=>1, 'msg'=>'User has been deleted from database']);
         }else{
@@ -111,12 +116,8 @@ class AdminController extends Controller
     }
     // filter
     public function filter(Request $request){
-        $startdate = $request->startdate;
-        $enddate = $request->enddate;
-
-        $users = User::whereDate('created_at','>=',$startdate)
-                                ->whereDate('created_at','<=',$enddate)
-                                ->get();
+        $search = $request;
+        $users = User::where('firstname'||'lastname'||'country'||'phone_number'||'email' == $search)->get();
         return response()->json([
             'status'=> 200,
             'users'=> $users,

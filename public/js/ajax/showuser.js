@@ -119,7 +119,7 @@ $(function () {
                 d.end_date = $("#enddate").val();
             },
         },
-        columns: [
+ columns: [
             { data: "firstname", name: "firstname" },
             { data: "lastname", name: "lastname" },
             { data: "address", name: "address" },
@@ -135,10 +135,10 @@ $(function () {
             },
         ],
     });
-    $("div.dt-search input").unbind();
-    $("div.dt-search input").keyup(function (e) {
+$("div.dt-search input").unbind();
+$("div.dt-search input").keyup(function (e) {
         if (e.keyCode == 13) {
-            $(".data-table").DataTable().search($(this).val()).draw();
+           $(".data-table").DataTable().search($(this).val()).draw();
         }
     });
 });
@@ -147,7 +147,7 @@ $(function () {
 var deleteUser = $("#deleteUser").val();
 var lang = $("#lang").val();
 if(lang == 'ar'){
-  var text = ["هل تريد حذف هذا المستخدم؟","الغاء","نعم , حذف","تم حذف المستخدم",];
+  var text = ["هل تريد <b>حذف</b> هذا المستخدم؟","الغاء","نعم , حذف","تم حذف المستخدم",];
 }else{
   var text =["You want to <b>delete</b> this","Cancel","Yes, Delete","User has been deleted",];
 }

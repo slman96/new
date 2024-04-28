@@ -2,7 +2,8 @@
 
 use App\Http\Middleware\LangMiddleware;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\Admincontroller;
+use App\Http\Controllers\Admin\User\AdminUserController;
+use App\Http\Controllers\Admin\Product\AdminProductController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\Profile\ProfileController;
 /*
@@ -20,9 +21,10 @@ use App\Http\Controllers\Profile\ProfileController;
 
 Auth::routes();
 
+
 Route::get("/lang/{lang}", [LangController::class,'change']);
 Route::group(['middleware' => ['role:admin','auth',LangMiddleware::class]], function () { 
-    Route::controller(AdminController::class)->group(function(){
+    Route::controller(AdminUserController::class)->group(function(){
         Route::get('/admin/user/create', 'create')->name('admin.addUser');
         Route::post('/admin/user','store')->name('admin.storeUser');
         Route::get('/showalluser', 'index')->name('admin.showUser');

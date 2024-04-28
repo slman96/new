@@ -65,4 +65,6 @@
     "Show_User_Info" => "Show User Info",
     "role" => "role",
     "closeBtn" => "",
+    "Products" => "Products",
+    "Change_Password" => "Change Password"
   ];

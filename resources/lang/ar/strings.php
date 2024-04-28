@@ -66,4 +66,5 @@
     "password_confirm" => "تأكيد كلمة المرور",
     "Show_User_Info" => "عرض معلومات المستخدم",
     "closeBtn" => "padding: 1rem 1rem;margin: -1rem auto -1rem -1rem;",
+    "Products" => "المنتجات"
   ];

@@ -1,8 +1,8 @@
-<div dir="rtl" class="modal fade" id="changePasswordModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+<div class="modal fade" id="changePasswordModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5  dir="rtl" class="modal-title" id="exampleModalLabel">{{__('strings.Change_User_Password')}}</h5>
+                <h5  class="modal-title" id="exampleModalLabel">{{__('strings.Change_User_Password')}}</h5>
                 <button type="button" style="{{__("strings.closeBtn")}}" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
