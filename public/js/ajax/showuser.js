@@ -36,7 +36,10 @@ $(function () {
                 "sLast": "الأخير"
             }
         };
-    } 
+        var lanSearch = "أبحث هنا .....";
+    } else {
+        var lanSearch ="search here ..."
+    }
     table = $(".data-table").DataTable({
         language: language,
         processing: true,
@@ -117,6 +120,7 @@ $(function () {
             data: function (d) {
                 d.start_date = $("#startdate").val();
                 d.end_date = $("#enddate").val();
+                d.search = $('input[type="search"]').val()
             },
         },
  columns: [
@@ -136,9 +140,12 @@ $(function () {
         ],
     });
 $("div.dt-search input").unbind();
+const search = document.getElementById("dt-search-0");
+search.setAttribute("placeholder",lanSearch);
 $("div.dt-search input").keyup(function (e) {
         if (e.keyCode == 13) {
-           $(".data-table").DataTable().search($(this).val()).draw();
+            table.draw();
+        //   $(".data-table").DataTable().search($(this).val()).draw();
         }
     });
 });

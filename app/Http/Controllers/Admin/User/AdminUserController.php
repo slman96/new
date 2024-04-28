@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\User;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Controller;
@@ -16,10 +17,12 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AdminUserController extends Controller
 {
-    public function create(){
-        return view('Admin.User.adduser');
-    }
-    public function store(UserStoreRequest $request){
+    public function create(Request $request){
+        if($request->isMethod('get')){
+            return view('Admin.User.adduser');
+      }
+   
+      if($request->isMethod('post')){
         $data = $request->validated();
         $data['role']= 'user';
         $data['password'] = Hash::make($data['password']);
@@ -27,11 +30,14 @@ class AdminUserController extends Controller
         $user->assignRole('user');
 
         return redirect()->route('admin.index');
+      }
+        
     }
+   
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::select('*');
+            $data = User::latest()->get();
             if($request->filled('start_date') && $request->filled('end_date'))
             {
                 $startdate = $request->start_date;
@@ -40,6 +46,20 @@ class AdminUserController extends Controller
             }
             return Datatables::of($data)
                     ->addIndexColumn()
+                    ->filter(function ($instance) use ($request) {
+                        if (!empty($request->get('search'))) {
+                            $instance->collection = $instance->collection->filter(function ($row) use ($request) {
+                                if (Str::contains(Str::lower($row['email']), Str::lower($request->get('search')))){
+                                    return true;
+                                }else if (Str::contains(Str::lower($row['firstname']), Str::lower($request->get('search')))) {
+                                    return true;
+                                }else if (Str::contains(Str::lower($row['lastname']), Str::lower($request->get('search')))) {
+                                    return true;
+                                }
+                                return false;
+                            });
+                        }
+                    })
                     ->addColumn('action', function($row){
                         return '
                         <div id="actionColumn">

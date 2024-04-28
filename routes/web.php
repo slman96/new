@@ -26,7 +26,7 @@ Route::get("/lang/{lang}", [LangController::class,'change']);
 Route::group(['middleware' => ['role:admin','auth',LangMiddleware::class]], function () { 
     Route::controller(AdminUserController::class)->group(function(){
         Route::get('/admin/user/create', 'create')->name('admin.addUser');
-        Route::post('/admin/user','store')->name('admin.storeUser');
+        Route::post('/admin/user','create')->name('admin.storeUser');
         Route::get('/showalluser', 'index')->name('admin.showUser');
         Route::post('/admin/destroyuser','destroy')->name('admin.UserDestroy');
         Route::get('/getuser/{id}', 'show')->name('get.user.details');

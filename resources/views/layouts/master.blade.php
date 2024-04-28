@@ -98,6 +98,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
   <div>
     @yield('content')
   </div>
